@@ -5,4 +5,5 @@
     <string name="no_of_attempts_remaining">No of attempts remaining:</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="title_activity_host_screen">HostScreen</string>
 </resources>
