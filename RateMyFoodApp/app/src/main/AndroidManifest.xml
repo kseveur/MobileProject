@@ -9,10 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".HostScreen"
-            android:label="@string/title_activity_host_screen"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".AddMealScreen"></activity>
+        <activity android:name=".ProfileScreen" />
+        <activity android:name=".SearchDScreen" />
+        <activity android:name=".FoodGScreen" />
+        <activity android:name=".GuestScreen" />
+        <activity android:name=".HostScreen" />
         <activity android:name=".MainScreen" />
         <activity android:name=".LoginScreen">
             <intent-filter>
