@@ -14,6 +14,7 @@ public class LoginScreen extends AppCompatActivity {
     private EditText Password;
     private TextView Info;
     private Button Login;
+    private Button Register;
     private int counter = 5;
 
 
@@ -27,6 +28,7 @@ public class LoginScreen extends AppCompatActivity {
         Password = (EditText) findViewById(R.id.etPassword);
         Info = (TextView) findViewById(R.id.tvinfo);
         Login = (Button) findViewById(R.id.btnLogin);
+        Register = (Button) findViewById(R.id.btnRegister);
 
         Info.setText("No of attempts remaining: 5");
 
@@ -34,6 +36,14 @@ public class LoginScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 validate(Name.getText().toString(), Password.getText().toString());
+            }
+        });
+
+        Register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginScreen.this, RegisterScreen.class);
+                startActivity(intent);
             }
         });
     }

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">RateMyFoodApp</string>
     <string name="rate_my_food_app">Rate My Food App</string>
-    <string name="forgot_password">Forgot Password</string>
+    <string name="register">Register</string>
     <string name="no_of_attempts_remaining">No of attempts remaining:</string>
     <string name="password">Password</string>
     <string name="login">Login</string>

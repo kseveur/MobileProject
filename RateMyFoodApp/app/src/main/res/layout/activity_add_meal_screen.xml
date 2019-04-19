@@ -126,23 +126,25 @@
             android:hint="Zip"
             android:inputType="textPersonName" />
 
-        <EditText
-            android:id="@+id/DinnerDate"
+        <TextView
+            android:id="@+id/tvDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:editable="false"
-            android:ems="10"
-            android:hint="Date"
-            android:inputType="date" />
+            android:hint="Select Date"
+            android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/Time"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/darker_gray"/>
+
+
+        <TextView
+            android:id="@+id/tvTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Time"
-            android:inputType="time" />
+            android:hint="Select Time"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/btnSubmit"
