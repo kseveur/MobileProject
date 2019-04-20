@@ -6,4 +6,5 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="title_activity_host_screen">HostScreen</string>
+    <string name="listview">ListView</string>
 </resources>

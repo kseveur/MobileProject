@@ -44,7 +44,7 @@ public class MainScreen extends AppCompatActivity {
             }
         });
 
-        FoodGallery.setOnClickListener(new View.OnClickListener() {
+      /*  FoodGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent FoodGIntent = new Intent(MainScreen.this, FoodGScreen.class);
@@ -58,7 +58,7 @@ public class MainScreen extends AppCompatActivity {
                 Intent SearchDIntent = new Intent(MainScreen.this, SearchDScreen.class);
                 startActivity(SearchDIntent);
             }
-        });
+        });*/
 
         Profiles.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,16 +67,5 @@ public class MainScreen extends AppCompatActivity {
                 startActivity(ProfileIntent);
             }
         });
-
-
-
-
-
     }
-
-
-
-
-
-
 }
