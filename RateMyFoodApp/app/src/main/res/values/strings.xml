@@ -1,15 +1,10 @@
 <resources>
     <string name="app_name">RateMyFoodApp</string>
     <string name="rate_my_food_app">Rate My Food App</string>
-    <string name="register">Register</string>
+    <string name="forgot_password">Forgot Password</string>
     <string name="no_of_attempts_remaining">No of attempts remaining:</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="title_activity_host_screen">HostScreen</string>
-    <string name="host">Host</string>
-    <string name="add_a_meal">Add A Meal</string>
-    <string name="take_a_picture">Take A Picture</string>
-    <string name="settings">Settings</string>
-    <string name="profiles">Profiles</string>
-    <string name="change_password">Change Password</string>
+    <string name="listview">ListView</string>
 </resources>
