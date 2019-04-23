@@ -52,7 +52,7 @@ public class RegisterScreen extends AppCompatActivity {
         String Lname = LastName.getText().toString().trim();
         String LoginID = Login.getText().toString().trim();
         String Phone = PhoneNumber.getText().toString();
-    
+
         if(!TextUtils.isEmpty(LoginID)) {
             String id = databaseMembers.push().getKey();
             Member member = new Member(Fname, Lname, LoginID, Phone);
