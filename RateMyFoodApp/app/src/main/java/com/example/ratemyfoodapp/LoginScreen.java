@@ -11,7 +11,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -47,7 +50,7 @@ public class LoginScreen extends AppCompatActivity {
         Register = (Button) findViewById(R.id.btnRegister);
         SignOut = (Button) findViewById(R.id.btnSignOut);
 
-        Info.setText("No of attempts remaining: 5");
+        //Info.setText("No of attempts remaining: 5");
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -56,8 +59,8 @@ public class LoginScreen extends AppCompatActivity {
                 if(user != null) {
                     Log.d(TAG, "onAuthStateChanged : signed in:" + user.getUid());
                     toastMessage("Successfully signed in with: " + user.getEmail());
-                    //Intent intent = new Intent(LoginScreen.this, MainScreen.class);
-                   // startActivity(intent);
+                    Intent intent = new Intent(LoginScreen.this, MainScreen.class);
+                    startActivity(intent);
                 } else {
                     // User is signed out
                     Log.d(TAG, "OnAuthStateChanged: signed-out");
@@ -74,7 +77,16 @@ public class LoginScreen extends AppCompatActivity {
                 String pass = Password.getText().toString();
 
                 if(!email.equals("") && !pass.equals("")) {
-                    mAuth.signInWithEmailAndPassword(email, pass);
+                    mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener((new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(!task.isSuccessful()) {
+                                toastMessage("Failed Login Attempt!!");
+                            }
+                        }
+                    }));
+
+
                 } else {
                     toastMessage("You didn't fill in all the fields");
                 }
