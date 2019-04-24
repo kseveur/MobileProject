@@ -30,18 +30,17 @@ public class ProfileScreen extends AppCompatActivity {
 
     private Button Submit;
     private static final String TAG = "ProfileActivity";
-    private FirebaseDatabase mFireBaseDatabase;
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
-    private DatabaseReference mynewRef;
+    private DatabaseReference myRef;
     private ProgressDialog progressDialog;
     private FirebaseUser user;
     private String userID;
-    private ListView mListView;
     private EditText FirstName;
     private EditText LastName;
     private EditText Email;
     private EditText PhoneNumber;
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase mFireBaseDatabase;
+
 
 
     @Override
@@ -49,104 +48,50 @@ public class ProfileScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_screen);
 
-        mAuth = FirebaseAuth.getInstance();
-        mFireBaseDatabase = FirebaseDatabase.getInstance();
-        mynewRef = mFireBaseDatabase.getReference("members");
-        user = mAuth.getCurrentUser();
-        Submit = (Button) findViewById(R.id.btnSubmit);
-        progressDialog = new ProgressDialog(this);
         FirstName = (EditText) findViewById(R.id.etFirstName);
         LastName = (EditText) findViewById(R.id.etLastName);
         Email = (EditText) findViewById(R.id.etEmail);
         PhoneNumber = (EditText) findViewById(R.id.etPhone);
+        Submit = (Button) findViewById(R.id.btnSubmit);
+        mAuth = FirebaseAuth.getInstance();
+        mFireBaseDatabase = FirebaseDatabase.getInstance();
+        user = mAuth.getCurrentUser();
 
 
+        myRef = mFireBaseDatabase.getReference("members");
+        Log.d("CREATION", myRef.toString());
+        Log.d("CREATION", myRef.toString());
 
 
-
-        userID = user.getUid();
-
-        Log.d("CREATION", "DO I GT HERE!!!!!!");
-
-        mynewRef.addValueEventListener(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.d("CREATION", "DO I GT HERE 11111!!!!!!");
 
-                String fname = dataSnapshot.child("members").child(userID).child("Fname").getValue(String.class);
-                String lname = dataSnapshot.child("members").child(userID).child("Lname").getValue(String.class);
-                String email = dataSnapshot.child("members").child(userID).child("email").getValue(String.class);
-                String phone = dataSnapshot.child("members").child(userID).child("phone").getValue(String.class);
-                Log.d("CREATION", "DO I GT HERE 22222!!!!!!");
+                Member member = dataSnapshot.getValue(Member.class);
 
+                if(member.getFname() != null) FirstName.setText(member.getFname());
+                if(member.getLname() != null) LastName.setText(member.getLname());
+                if(member.getLoginId() != null) Email.setText(member.getLoginId());
+                if(member.getPhone() != null) PhoneNumber.setText(member.getPhone());
 
-                FirstName.setText(fname, TextView.BufferType.EDITABLE);
-                LastName.setText(lname, TextView.BufferType.EDITABLE);
-                Email.setText(email, TextView.BufferType.EDITABLE);
-                PhoneNumber.setText(phone, TextView.BufferType.EDITABLE);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                toastMessage("Database error!!");
             }
-        })   ;
-
-
+        });
 
 
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 saveUserInfo();
+                toastMessage("Profile successfully updated!");
             }
         });
 
 
-
-
-
-
-
-
-
-
-        /*mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    Log.d(TAG, "onAuthStateChanged : signed in:" + user.getUid());
-                    toastMessage("Successfully signed in with: " + user.getEmail());
-                } else {
-                    // User is signed out
-                    Log.d(TAG, "OnAuthStateChanged: signed-out");
-                    toastMessage("Successfully signed out");
-                }
-            }
-        };  */
-
-
-        /*mynewRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                showData(dataSnapshot);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
-
-
-    /*   Settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent ProfileIntent = new Intent(ProfileScreen.this, MainScreen.class);
-                startActivity(ProfileIntent);
-            }
-        });*/
     }
 
 
@@ -179,47 +124,35 @@ public class ProfileScreen extends AppCompatActivity {
             databaseMembers.child(id).child("Phone").setValue(phone);
         }
 
+        Intent intent = new Intent(ProfileScreen.this, MainScreen.class);
+        startActivity(intent);
+
 
     }
 
-    /*private void showData(DataSnapshot dataSnapshot) {
+    private void showData(DataSnapshot dataSnapshot) {
         for (DataSnapshot ds : dataSnapshot.getChildren()) {
             Member memberInfo = new Member();
-            memberInfo.setFirst(ds.child(userID).getValue(Member.class).getFname());  // set the first name
-            memberInfo.setLast(ds.child(userID).getValue(Member.class).getLname());  // set the first name
-            memberInfo.setTheLogin(ds.child(userID).getValue(Member.class).getLoginId());  // set the first name
-            memberInfo.setPhoneNum(ds.child(userID).getValue(Member.class).getPhone());  // set the first name
+            memberInfo.setFirst(ds.child("members").child(userID).getValue(Member.class).getFname());  // set the first name
+            memberInfo.setLast(ds.child("members").child(userID).getValue(Member.class).getLname());  // set the first name
+            memberInfo.setTheLogin(ds.child("members").child(userID).getValue(Member.class).getLoginId());  // set the first name
+            memberInfo.setPhoneNum(ds.child("members").child(userID).getValue(Member.class).getPhone());  // set the first name
 
+            Log.d(TAG, "showData: firstname: " + memberInfo.getFname());
+            Log.d(TAG, "showData: lastname: " + memberInfo.getLname());
+            Log.d(TAG, "showData: email: " + memberInfo.getLoginId());
+            Log.d(TAG, "showData: phone: " + memberInfo.getPhone());
 
-            ArrayList<String> array = new ArrayList<>();
-            array.add(memberInfo.getFname());
-            array.add(memberInfo.getLname());
-            array.add(memberInfo.getLoginId());
-            array.add(memberInfo.getPhone());
-            ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, array);
-            mListView.setAdapter(adapter);
-        }
-    }*/
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        mAuth.addAuthStateListener(mAuthListener);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener((mAuthListener));
+            FirstName.setText(memberInfo.getFname());
+            LastName.setText((memberInfo.getLname()));
+            Email.setText(memberInfo.getLoginId());
+            PhoneNumber.setText(memberInfo.getPhone());
         }
     }
+
 
     private void toastMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }
 

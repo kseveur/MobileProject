@@ -8,14 +8,13 @@
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="251dp"
-        android:layout_height="50dp"
+        android:layout_width="139dp"
+        android:layout_height="33dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="97dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="10dp"
         android:text="Add New Meals"
-        android:textSize="32sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
