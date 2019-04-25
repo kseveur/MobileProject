@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "1036813817366",
-    "firebase_url": "https://ratemyfood-28dee.firebaseio.com",
-    "project_id": "ratemyfood-28dee",
-    "storage_bucket": "ratemyfood-28dee.appspot.com"
+    "project_number": "789630875133",
+    "firebase_url": "https://ratemyfoodapp.firebaseio.com",
+    "project_id": "ratemyfoodapp",
+    "storage_bucket": "ratemyfoodapp.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1036813817366:android:7ec5586b218713f2",
+        "mobilesdk_app_id": "1:789630875133:android:7ec5586b218713f2",
         "android_client_info": {
           "package_name": "com.example.ratemyfoodapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1036813817366-7m4mtfhpj0r0d0jkfl7toodutg8qai3u.apps.googleusercontent.com",
+          "client_id": "789630875133-v1vdbit46arghnnq3arb9jlepfef95k8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.ratemyfoodapp",
-            "certificate_hash": "b4864da27dff784e659577a99dd30e4f2c04d61d"
+            "certificate_hash": "3055c594074c76f8b9ef2dfb7ea9e418315b7cf0"
           }
         },
         {
-          "client_id": "1036813817366-h21vi1pbe9hbunjhn2jhpjh0n5aba462.apps.googleusercontent.com",
+          "client_id": "789630875133-mairur86fcfiaiuqeubdbb1qlqfjs6cn.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDU4BcRmQQEjQyA2f4_Y4PJPua1KOUubCg"
+          "current_key": "AIzaSyAQweRwZ3DyaS7k-lpUZxeImO6QUutSNw0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1036813817366-h21vi1pbe9hbunjhn2jhpjh0n5aba462.apps.googleusercontent.com",
+              "client_id": "789630875133-mairur86fcfiaiuqeubdbb1qlqfjs6cn.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
